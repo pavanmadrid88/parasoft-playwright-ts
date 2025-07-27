@@ -26,6 +26,14 @@ export class Constants {
     static readonly LocatorText = {
         PARASOFT_DEMO_WEBSITE_TEXT: "ParaSoft Demo Website"
     }
+
+    static readonly ApiEndPoints ={
+        ACCOUNTS : "https://parabank.parasoft.com/parabank/services_proxy/bank/accounts"
+    };
+
+    static readonly BillAmount = {
+        $100: "100"
+    };
 }
 
 

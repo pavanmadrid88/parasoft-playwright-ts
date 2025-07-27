@@ -2,13 +2,14 @@
 
 // utils/triggerApiCall.ts
 import { APIRequestContext } from '@playwright/test';
+import { stat } from 'fs';
 
 export async function triggerApiCall(
     apiContext: APIRequestContext,
     method: 'GET' | 'POST' | 'DELETE',
     endpoint: string,
     payload?: Record<string, any>
-): Promise<string> {
+) {
     let response;
 
     switch (method) {
@@ -30,6 +31,8 @@ export async function triggerApiCall(
     }
 
     const body = await response.json(); // Use .json() if expecting JSON
-    return body;
+    const status = await response.status();
+    return {"responseBody": body , "responseStatus" : status};
+    //return body;
 }
 

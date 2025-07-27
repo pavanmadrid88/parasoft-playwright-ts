@@ -21,3 +21,16 @@ npm install
 npx playwright install
 npx playwright test
 
+
+
+### Running Tests via Jenkins
+1. Ensure Jenkins is installed and running locally.
+2. Clone this repo on your Jenkins server.
+3. Create a Pipeline Job in Jenkins UI.
+4. Point it to this repo and branch.
+5. Trigger the build — it’ll run Playwright tests and generate reports.
+
+**Pre-requisites:**
+- Node.js installed
+- Playwright browsers installed (auto-handled by pipeline)
+
