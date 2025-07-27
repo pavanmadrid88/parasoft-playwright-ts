@@ -1,20 +1,18 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'test'
-        PLAYWRIGHT_BROWSERS_PATH = '/root/.cache/ms-playwright'
-    }
+    tools {nodejs "node"}
+
 
     stages {
         stage('Install') {
             
             steps {
-                withNPM(npmrcConfig: 'my-custom-nprc') {
+                
                     sh 'npm install'
                     sh 'npm ci'
                     sh 'npx playwright install'
-                }
+                
                
             }
         }
