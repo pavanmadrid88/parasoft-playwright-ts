@@ -13,7 +13,7 @@ export class AboutUsPage extends BasePage{
     }
 
     async isAboutUsPageDisplayed() {
-        const paraSoftDemoWebsiteTextPresent = await this.aboutUsPage.locator("text='ParaSoft Demo Website'").isVisible({ timeout: 10000 });
+        const paraSoftDemoWebsiteTextPresent = await this.aboutUsPage.locator("text=ParaSoft Demo Website").isVisible({ timeout: 10000 });
         return paraSoftDemoWebsiteTextPresent && this.aboutUsPage.url().toUpperCase().includes("ABOUT");
     }
 

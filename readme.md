@@ -5,21 +5,28 @@ This repository contains a modular and scalable end-to-end test automation frame
 
 ## Features
 
-- Page Object Model (POM) structure
-- Hybrid UI + API orchestration
-- Intelligent wait strategies with reusable `WaitUtils`
+- Page Object Model (POM) for UI test abstraction
+- Hybrid orchestration for UI + API test flows
+- Reusable intelligent wait strategies (`WaitUtils`)
 - Cookie/session-aware API flows
 - Modular `Constants` for Data abstraction
-- Fixtures to set up the 'test-state' 
-- Jenkins pipeline integration using SCM-based jenkinsfile
+- Fixtures to set up test state dynamically
+- Jenkins pipeline integration via `jenkinsfile`
 
 
-## Getting Started
+---
+
+## 🧑‍💻 Getting Started Locally
+
+Make sure [Node.js](https://nodejs.org/) is installed.
+
+### Install and Run Tests
 
 ```bash
-npm install
-npx playwright install
-npx playwright test --project=chromium
+npm install               # Install dependencies
+npx playwright install    # Download browser binaries
+npx playwright test       # Run all specs in headless mode
+
 
 
 ### CI/CD integration - Running Tests via Jenkins

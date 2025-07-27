@@ -20,7 +20,7 @@ export class AccountsOverviewPage extends BasePage {
     }
 
     async isAccountsOverviewPageDisplayed(accountId: string) {
-        const isVisible = await this.accountsOverviewText.isVisible({ timeout: 10000 });
+        const isVisible = await this.waitUtils.isElementInteractable(this.accountsOverviewText,10000,2000);
         const urlMatches = this.accountsOverviewPage.url().toUpperCase().includes("OVERVIEW");
         const isAccountIdVisible = this.accountsOverviewPage.locator("//td/a[contains(@href,'" + accountId + "')]")
         return isVisible && urlMatches && isAccountIdVisible;

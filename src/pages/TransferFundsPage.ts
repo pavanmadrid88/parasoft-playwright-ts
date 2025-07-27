@@ -24,7 +24,6 @@ export class TransferFundsPage extends BasePage {
     }
 
     async isTransferFundsPageDisplayed() {
-        //const transferFundsPageText = await this.transferFundsPageText.isVisible({ timeout: 10000 }); // Waits up to 10 seconds
         const transferFundsPageText = await this.waitUtils.isElementInteractable(this.transferFundsPageText);
         const url = this.transferFundsPage.url().toUpperCase().includes("TRANSFER");
         return transferFundsPageText && url;

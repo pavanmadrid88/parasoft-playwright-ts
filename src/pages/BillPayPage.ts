@@ -40,7 +40,7 @@ export class BillPayPage extends BasePage {
     }
 
     async isBillPayPageDisplayed() {
-        const billPayPageText = await this.billPayPageText.isVisible({ timeout: 10000 }); // Waits up to 10 seconds
+        const billPayPageText = await this.billPayPageText.isVisible({ timeout: 10000 });
         const url = this.billPayPage.url().toUpperCase().includes("BILLPAY");
         return billPayPageText && url;
     }
