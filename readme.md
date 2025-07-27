@@ -16,7 +16,7 @@ This repository contains a modular and scalable end-to-end test automation frame
 
 ---
 
-## 🧑‍💻 Getting Started Locally
+## Getting Started Locally
 
 Make sure [Node.js](https://nodejs.org/) is installed.
 
@@ -27,16 +27,26 @@ npm install               # Install dependencies
 npx playwright install    # Download browser binaries
 npx playwright test       # Run all specs in headless mode
 
+### Run in Headed mode for debugging
+```bash
+npx playwright test --headed
+
+
+### View HTML Report(in case of  Local execution)
+npx playwright show-report
 
 
 ### CI/CD integration - Running Tests via Jenkins
 
 **Pre-requisites:**
-- Node.js installed
+- Node.js installed on build agent
 - Jenkins server is installed
 
 1. Ensure Jenkins is running locally.
-2. Clone this repo on your Jenkins server.
-3. Create a Pipeline Job in Jenkins UI.
-4. Point it to this repo and branch (main).
-5. Trigger the build — it’ll run Playwright tests and generate list report.
+2. Open Jenkins UI → Create a Pipeline job.
+3. In job configuration:
+   - Select Pipeline script from SCM
+   - Set repository URL - https://github.com/pavanmadrid88/parasoft-playwright-ts.git
+   - Choose branch - main
+   - Set Script Path to jenkinsfile
+4. Trigger the build — it’ll run the tests and generate list report.
