@@ -1,8 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS 18' // Matches name in Global Tool Config
+    environment {
+        NODE_ENV = 'test'
+        PLAYWRIGHT_BROWSERS_PATH = '/root/.cache/ms-playwright'
     }
 
     stages {
@@ -15,8 +16,23 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npx playwright test'
+                sh 'npx playwright test --reporter=html'
             }
+        }
+
+        stage('Archive Report') {
+            steps {
+                archiveArtifacts artifacts: '**/playwright-report/**', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Tests passed'
+        }
+        failure {
+            echo '❌ Test run failed'
         }
     }
 }
