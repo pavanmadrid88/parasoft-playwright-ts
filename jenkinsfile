@@ -1,34 +1,22 @@
 pipeline {
     agent any
 
-    environment {
-        CI = 'true'
+    tools {
+        nodejs 'NodeJS 18' // Matches name in Global Tool Config
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Install Dependencies') {
+        stage('Install') {
             steps {
                 sh 'npm ci'
-                sh 'npm run install:browsers'
+                sh 'npx playwright install'
             }
         }
 
-        stage('Run Playwright Tests') {
+        stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'npx playwright test'
             }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '**/playwright-report/**', fingerprint: true
         }
     }
 }
