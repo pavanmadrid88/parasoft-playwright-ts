@@ -18,7 +18,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npx playwright test --project=chromium --reporter=html'
+                sh 'npx playwright test --project=chromium --reporter=list'
             }
         }
 
