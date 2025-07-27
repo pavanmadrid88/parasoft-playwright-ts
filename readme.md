@@ -16,11 +16,9 @@ This repository contains a modular and scalable end-to-end test automation frame
 
 ---
 
-## Getting Started Locally
+### Install and Run Tests
 
 Make sure [Node.js](https://nodejs.org/) is installed.
-
-### Install and Run Tests
 
 ```bash
 npm install               # Install dependencies
