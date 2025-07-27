@@ -17,12 +17,9 @@ export class ServicesPage extends BasePage {
     }
 
     async isServicesPageDisplayed() {
-
         const openApiLinkPresent = await this.waitUtils.isElementInteractable(this.openApiLink);
         const availableBookstoreSoapTextPresent = await this.waitUtils.isElementInteractable(this.availableBookstoreSoapText);
-
         return availableBookstoreSoapTextPresent && this.servicesPage.url().toUpperCase().includes("SERVICES");
-
     }
 
 }

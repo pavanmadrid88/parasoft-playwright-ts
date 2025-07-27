@@ -23,10 +23,7 @@ export class Constants {
         SSN: "1212"
     };
 
-    static readonly LocatorText = {
-        PARASOFT_DEMO_WEBSITE_TEXT: "ParaSoft Demo Website"
-    }
-
+    //API Endpoints
     static readonly ApiEndPoints ={
         ACCOUNTS : "https://parabank.parasoft.com/parabank/services_proxy/bank/accounts"
     };

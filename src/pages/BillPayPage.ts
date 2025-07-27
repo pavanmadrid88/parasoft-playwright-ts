@@ -1,7 +1,8 @@
 import { Locator, Page } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
 
-export class BillPayPage {
+export class BillPayPage extends BasePage {
 
     private readonly billPayPage: Page;
     private readonly billPayPageText: Locator;
@@ -20,6 +21,7 @@ export class BillPayPage {
     private readonly sendPaymentButton: Locator;
 
     constructor(billPayPage: Page) {
+        super(billPayPage);
         this.billPayPage = billPayPage;
         this.billPayPageText = billPayPage.locator("//h1[contains(text(),'Bill Payment Service')]");
         this.billPaymentCompleteText = billPayPage.locator("//h1[contains(text(),'Bill Payment Complete')]");
@@ -47,44 +49,28 @@ export class BillPayPage {
         const randomSuffix = Math.floor(Math.random() * 100000);
         const payeeName = `pavantestpayee${randomSuffix}`;
         await this.payeeNameInput.fill(payeeName)
-
         const address = `pavantestaddress${randomSuffix}`;
         await this.payeeAddressInput.fill(address)
-
         const city = `pavantestcity${randomSuffix}`;
         await this.payeeCityInput.fill(city)
-
         const state = `pavanteststate${randomSuffix}`;
         await this.payeeStateInput.fill(state)
-
         const zipCode = `pavantestzipcode${randomSuffix}`;
         await this.payeeZipCodeInput.fill(zipCode)
-
         const phoneNumber = `pavantestphonenumber${randomSuffix}`;
         await this.payeePhoneNumberInput.fill(phoneNumber)
-
         const accountNumber = `${randomSuffix}`;
         await this.payeeAccountumberInput.fill(accountNumber)
         await this.payeeVerifyAccountumberInput.fill(accountNumber);
-
         await this.payeeAmountInput.fill(billAmount);
-
         await this.fromAccountSelect.selectOption(fromAccountId)
-
-        await this.billPayPage.waitForTimeout(2000);
-
+        await this.waitUtils.isElementInteractable(this.sendPaymentButton,2000,2000);
         await this.sendPaymentButton.click();
 
     }
 
     async isBillPaymentComplete() {
-        //await this.billPayPage.waitForTimeout(2000)
-        try {
-            await this.billPaymentCompleteText.waitFor({ state: 'visible', timeout: 10000 });
-            return true;
-        } catch {
-            return false;
-        }
+        return await this.waitUtils.isElementInteractable(this.billPaymentCompleteText,10000,5000)
     }
 
 

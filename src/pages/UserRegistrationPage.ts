@@ -39,10 +39,9 @@ export class UserRegistrationPage extends BasePage {
 
     async goto() {
         await this.userRegistrationPage.goto(Constants.registrationUrl);
-
     }
 
-    async register(firstName, lastName, address, city, state, zipcode, phoneNumber, ssn, userName, password) {
+    async register(firstName:string, lastName:string, address:string, city:string, state:string, zipcode, phoneNumber, ssn, userName:string, password:string) {
 
         await this.firstNameInput.fill(firstName);
         await this.lastNameInput.fill(lastName);
@@ -56,13 +55,11 @@ export class UserRegistrationPage extends BasePage {
         await this.passwordInput.fill(password);
         await this.confirmPasswordInput.fill(password);
         await this.waitUtils.isElementInteractable(this.registerButton);
-        // await this.registerButton.waitFor({ state: 'visible', timeout: 10000 });
-        // await this.userRegistrationPage.waitForTimeout(2000); // small delay before submit
         await this.registerButton.click()
         await this.setCredentials(userName, password)
     }
 
-    async setCredentials(userName, password) {
+    async setCredentials(userName:string, password:string) {
         this.credentials = { "Username": userName, "Password": password }
     }
 
@@ -74,7 +71,6 @@ export class UserRegistrationPage extends BasePage {
     async isRegistrationSuccessful(userName) {
         let userRegistrationStatus = "FAIL"
         try {
-
             await expect(this.userRegistrationPage.locator('h1.title', { hasText: `Welcome ${userName}` })).toBeVisible();
             await expect(this.userRegistrationPage.getByText(Constants.accountCreatedSuccessfullyText)).toBeVisible();
             userRegistrationStatus = "PASS"
@@ -86,10 +82,7 @@ export class UserRegistrationPage extends BasePage {
             } else {
                 console.error(`Error occured while checking for succesfull user registration ${error}`)
             }
-
         }
         return userRegistrationStatus
-
     }
-
 }
