@@ -28,14 +28,8 @@ export class Constants {
         ACCOUNTS : "https://parabank.parasoft.com/parabank/services_proxy/bank/accounts"
     };
 
+    //Bill Amount
     static readonly BillAmount = {
         $100: "100"
     };
-}
-
-
-
-export class DynamicData {
-    static billPaymentFromAccount = "";
-    static billAmount = "";
 }

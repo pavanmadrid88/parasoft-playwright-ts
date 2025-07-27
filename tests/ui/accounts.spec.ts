@@ -2,8 +2,9 @@
 import { expect, request } from "@playwright/test";
 import { test } from "../../src/fixtures/CombinedFixture"
 import { HomeIndexPage } from "../../src/pages/HomeIndexPage";
-import { Constants, DynamicData } from "../../src/data/constants";
-import { triggerApiCall } from "../../src/utils/ApiUtils";
+import { Constants } from "../../src/data/constants";
+import { ApiUtils } from "../../src/utils/ApiUtils";
+
 
 
 
@@ -55,9 +56,10 @@ test('should verify the bill payment', async ({ page, userRegistrationPage, open
    expect(await billPayPage.isBillPaymentComplete()).toBeTruthy();
 
    //api validation
+   const apiUtils = new ApiUtils();
    const apiContext = await request.newContext({ extraHTTPHeaders: { Cookie: sessionHeader } });
    const endpoint = `${Constants.ApiEndPoints.ACCOUNTS}/${accountId}/transactions/amount/${billAmount}?timeout=30000`;
-   const result = await triggerApiCall(apiContext, 'GET', endpoint);
+   const result = await apiUtils.triggerApiCall(apiContext, 'GET', endpoint);
    const responseString: string = JSON.stringify(result["responseBody"]);
    const responseStatus: string = result["responseStatus"].toString();
    expect(responseString.includes(accountId.toString())).toBe(true);

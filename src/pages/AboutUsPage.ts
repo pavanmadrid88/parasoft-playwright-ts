@@ -1,12 +1,14 @@
 import { Page } from "@playwright/test";
 import { Constants } from "../data/constants";
+import { BasePage } from "./BasePage";
 
 
-export class AboutUsPage {
+export class AboutUsPage extends BasePage{
 
     private readonly aboutUsPage: Page;
 
     constructor(aboutUsPage: Page) {
+        super(aboutUsPage);
         this.aboutUsPage = aboutUsPage;
     }
 
