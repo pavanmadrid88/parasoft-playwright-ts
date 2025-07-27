@@ -1,14 +1,14 @@
 
 import { GlobalNavigationMenuSection } from "../../src/pages/GlobalNavigationMenuSection";
 import { expect } from "@playwright/test";
-import {test} from "../../src/fixtures/CombinedFixture"
+import { test } from "../../src/fixtures/CombinedFixture"
 
 
 
 
 
-test('should verify the global navigation menu link items', async ({ page,userRegistrationPage}) => {
-  
+test('should verify the global navigation menu link items', async ({ page, userRegistrationPage }) => {
+
    const globalNavigationMenuSection = new GlobalNavigationMenuSection(page);
 
    //click on Home link
@@ -30,7 +30,5 @@ test('should verify the global navigation menu link items', async ({ page,userRe
    //Click on contact us link
    const contactUsPage = await globalNavigationMenuSection.clickContactUsLink();
    expect(await contactUsPage.isContactUsPageDisplayed()).toBeTruthy();
-  
-  
 
 });

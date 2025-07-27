@@ -12,14 +12,13 @@ pipeline {
                     sh 'npm install'
                     sh 'npm ci'
                     sh 'npx playwright install'
-                
-               
+                          
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npx playwright test --reporter=html'
+                sh 'npx playwright test --project=chromium --reporter=html'
             }
         }
 

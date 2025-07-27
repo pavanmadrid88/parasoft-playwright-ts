@@ -32,7 +32,7 @@ export async function triggerApiCall(
 
     const body = await response.json(); // Use .json() if expecting JSON
     const status = await response.status();
-    return {"responseBody": body , "responseStatus" : status};
-    //return body;
+    return { "responseBody": body, "responseStatus": status };
+
 }
 
