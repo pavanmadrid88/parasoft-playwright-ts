@@ -8,12 +8,14 @@ pipeline {
 
     stages {
         stage('Install') {
-            withNPM(npmrcConfig: 'my-custom-nprc') {
-                sh 'npm install'
-            }
+            
             steps {
-                sh 'npm ci'
-                sh 'npx playwright install'
+                withNPM(npmrcConfig: 'my-custom-nprc') {
+                    sh 'npm install'
+                    sh 'npm ci'
+                    sh 'npx playwright install'
+                }
+               
             }
         }
 
